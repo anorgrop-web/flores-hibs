@@ -48,18 +48,18 @@ export function ProductSection() {
   ]
 
   const kits = [
-    { id: "20-seeds", label: "Offerta Speciale - Kit Pianta Ibisco 4 Colori (Giallo, Viola, Rosso e Rosa)", price: 19.87, originalPrice: 39.74 },
-    { id: "75-seeds", label: "Ibisco Rosso - Confezione da 4", price: 24.87, originalPrice: 49.74 },
-    { id: "50-seeds", label: "Ibisco Giallo - Confezione da 4", price: 24.87, originalPrice: 49.74 },
+    { id: "20-seeds", label: "OFFERTA SPECIALE - Kit 4 Piantine (Giallo, Viola, Rosso e Rosa)", price: 19.87, originalPrice: 39.74 },
+    { id: "75-seeds", label: "Ibisco Rosso - Confezione da 4 Piantine", price: 24.87, originalPrice: 49.74 },
+    { id: "50-seeds", label: "Ibisco Giallo - Confezione da 4 Piantine", price: 24.87, originalPrice: 49.74 },
     {
       id: "silver-kit",
-      label: "Ibisco Rosa - Confezione da 4",
+      label: "Ibisco Rosa - Confezione da 4 Piantine",
       price: 24.87,
       originalPrice: 49.74,
     },
     {
       id: "gold-kit",
-      label: "Ibisco Viola - Confezione da 4",
+      label: "Ibisco Viola - Confezione da 4 Piantine",
       price: 24.87,
       originalPrice: 49.74,
     },
@@ -308,7 +308,7 @@ export function ProductSection() {
 
           <div className="space-y-6">
             <h1 className="text-2xl lg:text-3xl font-bold text-balance leading-tight">
-              Kit Ibisco Rari | Multicolore
+              Collezione Esclusiva Ibisco Raro | Multicolore
             </h1>
 
             <div className="flex flex-wrap gap-6 lg:gap-8 justify-center mx-10">
@@ -319,16 +319,14 @@ export function ProductSection() {
               <div className="flex flex-col items-center gap-2">
                 <Shield className="w-8 h-8 text-gray-700" />
                 <span className="text-xs font-semibold text-center">
-                  Garanzia
+                  Attecchimento
                   <br />
-                  di
-                  <br />
-                  Crescita
+                  Garantito
                 </span>
               </div>
               <div className="flex flex-col items-center gap-2">
                 <Truck className="w-8 h-8 text-gray-700" />
-                <span className="text-xs font-semibold text-center">Consegna Sicura</span>
+                <span className="text-xs font-semibold text-center">Spedizione Protetta</span>
               </div>
             </div>
 
@@ -508,7 +506,7 @@ export function ProductSection() {
           <div className="flex items-center justify-between gap-4">
             <div className="flex-1 min-w-0">
               <h3 className="text-sm font-semibold truncate">
-                Kit Ibisco Rari | Multicolore
+                Collezione Esclusiva Ibisco Raro | Multicolore
               </h3>
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-lg font-bold">€{getCurrentPrice().toFixed(2).replace(".", ",")}</span>

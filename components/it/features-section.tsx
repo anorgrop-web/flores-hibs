@@ -3,20 +3,20 @@ import { Flower2 } from 'lucide-react'
 export function FeaturesSection() {
   const features = [
     {
-      title: "Fiori Sorprendenti",
-      description: "Ogni fiore vanta più strati di petali arricciat per un aspetto più pieno e drammatico.",
+      title: "Fioriture Spettacolari",
+      description: "Ogni fiore sboccia con molteplici strati di petali ondulati, creando un effetto voluminoso e scenografico unico nel suo genere.",
     },
     {
-      title: "Lunga Stagione di Fioritura",
-      description: "Goditi fiori continui dall'estate fino all'inizio dell'autunno.",
+      title: "Fioritura Prolungata",
+      description: "Un'esplosione di colori che ti accompagna senza sosta dall'inizio dell'estate fino ai primi freschi autunnali.",
     },
     {
-      title: "Perfetto per qualsiasi spazio",
-      description: "Che sia piantato in vasi, aiuole o lungo i vialetti, brilla ovunque cresca.",
+      title: "Ideale per Ogni Spazio",
+      description: "In vaso sul terrazzo, in aiuola o lungo i vialetti: queste piante donano splendore ovunque decidano di mettere radici.",
     },
     {
-      title: "Calamita per Farfalle e Colibrì",
-      description: "Queste bellezze tropicali attirano gli impollinatori, aggiungendo vita e movimento al tuo giardino.",
+      title: "Un Richiamo per la Natura",
+      description: "Queste meraviglie tropicali attirano farfalle e impollinatori, portando vita, movimento e allegria nel tuo angolo verde.",
     },
   ]
 
@@ -36,11 +36,11 @@ export function FeaturesSection() {
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-balance">
-            Scatena un'Esplosione Tropicale di Petali: Giovani Piante di Ibisco Doppio Raro
+            Trasforma il tuo Giardino in un Paradiso Tropicale: Rari Ibischi Doppi, Pronti a Fiorire
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto text-pretty">
-            Porta un'atmosfera lussureggiante ed esotica nel tuo giardino con le nostre{" "}
-            <span className="font-semibold text-foreground">Piante di Ibisco Doppio</span>. Conosciute per i loro fiori pieni e stratificati e i colori vibranti, questi fiori creano uno spettacolo straordinario impossibile da ignorare.
+            Dona un tocco esotico e lussureggiante ai tuoi spazi con i nostri{" "}
+            <span className="font-semibold text-foreground">Ibischi Doppi</span>. Famosi per i loro fiori ricchi, strutturati e dai colori vibranti, regalano uno spettacolo naturale che lascia senza fiato.
           </p>
         </div>
 
