@@ -1,9 +1,15 @@
 "use client"
 
 import { useSearchParams, useRouter } from 'next/navigation'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Play, Check } from 'lucide-react'
+
+declare global {
+  interface Window {
+    fbq?: (action: string, eventName: string, params?: any) => void
+  }
+}
 
 export default function Upsell1Page() {
   const searchParams = useSearchParams()
@@ -13,6 +19,18 @@ export default function Upsell1Page() {
 
   const email = searchParams.get("email")
   const customer = searchParams.get("customer")
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq("track", "Purchase", {
+        value: 29.90,
+        currency: "GBP",
+        content_name: "Master Gardening Course",
+        content_type: "product",
+      })
+      console.log("[v0] Facebook Pixel Purchase event fired on upsell1")
+    }
+  }, [])
 
   const handleAccept = async () => {
     setIsLoading(true)
