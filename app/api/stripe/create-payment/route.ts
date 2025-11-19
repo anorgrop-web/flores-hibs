@@ -16,6 +16,8 @@ const PRICE_IDS = {
 // --- END PRICE CONFIGURATION AREA ---
 
 export async function POST(request: NextRequest) {
+  let locale = 'en'
+  
   try {
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
@@ -35,7 +37,9 @@ export async function POST(request: NextRequest) {
     }
 
     const stripe = new Stripe(stripeSecretKey, { apiVersion: "2024-06-20" })
-    const { paymentMethodId, customerData, amountInCents, currency, locale } = await request.json()
+    const body = await request.json()
+    locale = body.locale || 'en'
+    const { paymentMethodId, customerData, amountInCents, currency } = body
 
     console.log("[v0] Payment request:", {
       currency,
@@ -114,9 +118,48 @@ export async function POST(request: NextRequest) {
       success: true,
       redirectUrl,
     })
-  } catch (error) {
+  } catch (error: any) {
     console.error("[v0] Stripe payment error:", error)
-    const errorMessage = error instanceof Error ? error.message : "An unknown error occurred"
+    
+    const errorMap: Record<string, { en: string; it: string }> = {
+      card_declined: {
+        en: "Your card was declined.",
+        it: "La tua carta è stata rifiutata.",
+      },
+      insufficient_funds: {
+        en: "Insufficient funds.",
+        it: "Fondi insufficienti.",
+      },
+      expired_card: {
+        en: "Your card has expired.",
+        it: "La tua carta è scaduta.",
+      },
+      incorrect_cvc: {
+        en: "Incorrect CVC.",
+        it: "CVC non corretto.",
+      },
+      processing_error: {
+        en: "An error occurred while processing your card.",
+        it: "Si è verificato un errore durante l'elaborazione della carta.",
+      },
+      incorrect_number: {
+        en: "The card number is incorrect.",
+        it: "Il numero della carta non è corretto.",
+      },
+    }
+
+    const defaultError = {
+      en: "An error occurred while processing your payment.",
+      it: "Si è verificato un errore durante l'elaborazione del pagamento.",
+    }
+
+    const currentLocale = (locale === 'it' ? 'it' : 'en') as 'it' | 'en'
+    let errorMessage = defaultError[currentLocale]
+
+    if (error?.code && errorMap[error.code]) {
+      errorMessage = errorMap[error.code][currentLocale]
+    }
+
     return NextResponse.json({ error: errorMessage, success: false }, { status: 400 })
   }
 }

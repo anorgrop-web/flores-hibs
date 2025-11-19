@@ -1053,7 +1053,7 @@ function CheckoutForm() {
 
 export default function CheckoutPageWrapper() {
   return (
-    <Elements stripe={stripePromise}>
+    <Elements stripe={stripePromise} options={{ locale: 'it' }}>
       <CheckoutForm />
     </Elements>
   )
