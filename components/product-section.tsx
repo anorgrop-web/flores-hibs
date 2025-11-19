@@ -475,11 +475,11 @@ export function ProductSection() {
             </div>
 
             <Button
-              onClick={selectedKit === "20-seeds" ? scrollToOffers : handleAddToCart}
+              onClick={handleAddToCart}
               className="w-full h-14 text-base font-bold rounded-md"
               style={{ backgroundColor: "#2d5f4f", color: "white" }}
             >
-              Choose My Kit
+              ADD TO CART
             </Button>
 
             <div className="pt-6 pb-4">
@@ -553,11 +553,11 @@ export function ProductSection() {
               </div>
             </div>
             <Button
-              onClick={selectedKit === "20-seeds" ? scrollToOffers : handleAddToCart}
+              onClick={handleAddToCart}
               className="h-12 px-6 text-sm font-bold rounded-md whitespace-nowrap"
               style={{ backgroundColor: "#2d5f4f", color: "white" }}
             >
-              Choose My Kit
+              ADD TO CART
             </Button>
           </div>
         </div>

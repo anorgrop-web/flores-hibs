@@ -24,6 +24,7 @@ import { ChevronDown, Search, Info, Lock, ShoppingBag, X } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import Script from "next/script"
+import { cn } from "@/lib/utils"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "")
 
@@ -48,6 +49,7 @@ function CheckoutForm() {
   const stripe = useStripe()
   const elements = useElements()
   const { items, getSubtotal } = useCart()
+  const [detectedBrand, setDetectedBrand] = useState<string | null>(null)
   const [postcode, setPostcode] = useState("")
   const [selectedShipping, setSelectedShipping] = useState("standard")
   const [showOrderSummary, setShowOrderSummary] = useState(false)
@@ -832,28 +834,28 @@ function CheckoutForm() {
                         alt="Visa"
                         width={38}
                         height={24}
-                        className="h-6 w-auto"
+                        className={cn("h-6 w-auto transition-opacity duration-300", detectedBrand && detectedBrand !== "visa" ? "opacity-20 grayscale" : "opacity-100")}
                       />
                       <Image
                         src="https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/mastercard.1c4_lyMp.svg"
                         alt="Mastercard"
                         width={38}
                         height={24}
-                        className="h-6 w-auto"
+                        className={cn("h-6 w-auto transition-opacity duration-300", detectedBrand && detectedBrand !== "mastercard" ? "opacity-20 grayscale" : "opacity-100")}
                       />
                       <Image
                         src="https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/maestro.ByfUQi1c.svg"
                         alt="Maestro"
                         width={38}
                         height={24}
-                        className="h-6 w-auto"
+                        className={cn("h-6 w-auto transition-opacity duration-300", detectedBrand && detectedBrand !== "maestro" ? "opacity-20 grayscale" : "opacity-100")}
                       />
                       <Image
                         src="https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/amex.Csr7hRoy.svg"
                         alt="American Express"
                         width={38}
                         height={24}
-                        className="h-6 w-auto"
+                        className={cn("h-6 w-auto transition-opacity duration-300", detectedBrand && detectedBrand !== "amex" ? "opacity-20 grayscale" : "opacity-100")}
                       />
                     </div>
                   </div>
@@ -861,7 +863,13 @@ function CheckoutForm() {
                   <div className="bg-[#F8F8F8] p-4 space-y-4">
                     <div className="relative">
                       <div className="flex h-12 w-full rounded-md border border-input bg-white px-3 py-2 text-sm">
-                        <CardNumberElement options={cardNumberOptions} className="flex-1 pt-2" />
+                        <CardNumberElement 
+                          options={cardNumberOptions} 
+                          className="flex-1 pt-2" 
+                          onChange={(e) => {
+                            setDetectedBrand(e.brand && e.brand !== 'unknown' ? e.brand : null)
+                          }}
+                        />
                       </div>
                       <Lock className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     </div>
