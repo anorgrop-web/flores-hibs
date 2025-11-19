@@ -297,7 +297,7 @@ export function ProductSection() {
               Collezione Esclusiva Ibisco Raro | Multicolore
             </h1>
 
-            <div className="flex flex-wrap gap-6 lg:gap-8 justify-center mx-10">
+            <div className="flex flex-nowrap gap-2 sm:gap-6 lg:gap-8 justify-center mx-1 sm:mx-10">
               <div className="flex flex-col items-center gap-2">
                 <Heart className="w-8 h-8 text-gray-700" />
                 <span className="text-xs font-semibold text-center">Colori Vibranti</span>
