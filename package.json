@@ -60,6 +60,8 @@
     "react-resizable-panels": "latest",
     "recharts": "latest",
     "sonner": "latest",
+    "resend": "^4.0.0",
+    "@react-email/components": "^0.0.31",
     "stripe": "latest",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",

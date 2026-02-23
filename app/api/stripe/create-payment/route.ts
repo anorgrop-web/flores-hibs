@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
 import { supabaseAdmin } from "@/lib/supabase-admin"
+import { sendOrderConfirmationEmail } from "@/lib/send-order-email"
 
 // --- PRICE CONFIGURATION AREA ---
 const PRICE_IDS = {
@@ -162,6 +163,47 @@ export async function POST(request: NextRequest) {
       }
     } catch (dbError) {
       console.error("[v0] Failed to log order to Supabase:", dbError)
+    }
+
+    // --- Send order confirmation email via Resend ---
+    try {
+      console.log("[v0] Sending order confirmation email to:", customerData.email)
+      await sendOrderConfirmationEmail({
+        locale: (locale === "it" ? "it" : "en") as "en" | "it",
+        customerName: `${customerData.firstName} ${customerData.lastName}`,
+        customerEmail: customerData.email,
+        items: [
+          {
+            name: "Hibiscus Kit",
+            type: "main",
+            price: amountInCents,
+          },
+          {
+            name: "Versia App Subscription",
+            type: "app_sub",
+            price: 0,
+            trial: "29 days",
+          },
+          {
+            name: "Gardening Course",
+            type: "digital_sub",
+            price: 0,
+            trial: "1 day",
+          },
+        ],
+        totalAmountCents: amountInCents,
+        currency: currency,
+        shippingAddress: {
+          line1: customerData.address,
+          city: customerData.city,
+          postal_code: customerData.postcode,
+          country: customerData.country,
+        },
+      })
+      console.log("[v0] Order confirmation email sent successfully")
+    } catch (emailError) {
+      // Log but don't block the checkout flow
+      console.error("[v0] Failed to send order confirmation email:", emailError)
     }
 
     const upsellPath = locale === "it" ? "/it/upsell2" : "/upsell2"
