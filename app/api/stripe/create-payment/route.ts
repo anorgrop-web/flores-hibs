@@ -7,12 +7,12 @@ import { sendOrderConfirmationEmail } from "@/lib/send-order-email"
 const PRICE_IDS = {
   GBP: {
     oneTime: "price_1SDSeHCNWzvB3NegK5C4yyUn",
-    subscription_app: "price_1SVYHXCNWzvB3Negxdu8nlgi", // App (29 days trial)
+    subscription_app: "price_1T45w2CNWzvB3NegNbXqI9LI", // App (29 days trial)
     subscription_digital: "price_1SUX2cCNWzvB3Neg3Qj7xiJB", // Digital Course (1 day trial)
   },
   EUR: {
     oneTime: "price_1SDShyCNWzvB3Negz4rxJVjE",
-    subscription_app: "price_1SDSiiCNWzvB3NegN4flj6I1", // App (29 days trial)
+    subscription_app: "price_1T45w2CNWzvB3NegNbXqI9LI", // App (29 days trial)
     subscription_digital: "price_1SUdkyCNWzvB3NegKC29J6Kx", // Digital Course (1 day trial)
   },
 }
@@ -206,8 +206,8 @@ export async function POST(request: NextRequest) {
       console.error("[v0] Failed to send order confirmation email:", emailError)
     }
 
-    const upsellPath = locale === "it" ? "/it/upsell2" : "/upsell2"
-    const redirectUrl = `${appUrl}${upsellPath}?email=${encodeURIComponent(customerData.email)}&customer=${customer.id}&upsell1_accepted=true`
+    const upsellPath = locale === "it" ? "/it/upsell1" : "/upsell1"
+    const redirectUrl = `${appUrl}${upsellPath}?email=${encodeURIComponent(customerData.email)}&customer=${customer.id}`
     console.log("[v0] Success! Redirecting to:", redirectUrl)
 
     return NextResponse.json({
