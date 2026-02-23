@@ -7,7 +7,7 @@ import { sendOrderConfirmationEmail } from "@/lib/send-order-email"
 const PRICE_IDS = {
   GBP: {
     oneTime: "price_1SDSeHCNWzvB3NegK5C4yyUn",
-    subscription_app: "price_1T45w2CNWzvB3NegNbXqI9LI", // App (29 days trial)
+    subscription_app: "price_1T48FlCNWzvB3Neg7Kc6RItq", // App (29 days trial)
     subscription_digital: "price_1SUX2cCNWzvB3Neg3Qj7xiJB", // Digital Course (1 day trial)
   },
   EUR: {
