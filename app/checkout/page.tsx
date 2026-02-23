@@ -187,32 +187,6 @@ function CheckoutForm() {
     if (session.error) {
       setErrorMessage(session.error)
       setIsLoading(false)
-    } else if (session.requiresAction && session.clientSecret) {
-      // Handle 3D Secure authentication
-      const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(session.clientSecret)
-      if (confirmError) {
-        setErrorMessage(confirmError.message || "Authentication failed. Please try again.")
-        setIsLoading(false)
-      } else if (paymentIntent && paymentIntent.status === "succeeded") {
-        sessionStorage.setItem(
-          "orderData",
-          JSON.stringify({
-            value: total,
-            currency: currency,
-            content_ids: items.map((item) => item.id),
-            contents: items.map((item) => ({
-              id: item.id,
-              quantity: item.quantity,
-              item_price: item.price,
-            })),
-            num_items: items.reduce((sum, item) => sum + item.quantity, 0),
-          }),
-        )
-        window.location.href = session.redirectUrl
-      } else {
-        setErrorMessage("Payment could not be completed. Please try again.")
-        setIsLoading(false)
-      }
     } else if (session.success && session.redirectUrl) {
       sessionStorage.setItem(
         "orderData",
@@ -536,32 +510,6 @@ function CheckoutForm() {
           ev.complete("fail")
           setErrorMessage(session.error)
           setIsLoading(false)
-        } else if (session.requiresAction && session.clientSecret) {
-          ev.complete("success")
-          const { error: confirmError, paymentIntent } = await stripe!.confirmCardPayment(session.clientSecret)
-          if (confirmError) {
-            setErrorMessage(confirmError.message || "Authentication failed. Please try again.")
-            setIsLoading(false)
-          } else if (paymentIntent && paymentIntent.status === "succeeded") {
-            sessionStorage.setItem(
-              "orderData",
-              JSON.stringify({
-                value: total,
-                currency: currency,
-                content_ids: items.map((item) => item.id),
-                contents: items.map((item) => ({
-                  id: item.id,
-                  quantity: item.quantity,
-                  item_price: item.price,
-                })),
-                num_items: items.reduce((sum, item) => sum + item.quantity, 0),
-              }),
-            )
-            window.location.href = session.redirectUrl
-          } else {
-            setErrorMessage("Payment could not be completed. Please try again.")
-            setIsLoading(false)
-          }
         } else if (session.success && session.redirectUrl) {
           sessionStorage.setItem(
             "orderData",
@@ -1065,7 +1013,7 @@ function CheckoutForm() {
                 className="w-full h-14 bg-[#016630] hover:bg-[#014d24] text-white text-base font-semibold mb-4"
                 size="lg"
               >
-                {isLoading ? "Processing..." : `Complete Purchase (£${total.toFixed(2)})`}
+                {isLoading ? "Processing..." : `Complete Purchase (£${currency})`}
               </Button>
 
               {/* Footer Links */}
