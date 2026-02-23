@@ -90,6 +90,8 @@ export async function POST(request: NextRequest) {
     })
     console.log("[v0] Digital subscription created:", digitalSubscription.id, "Status:", digitalSubscription.status)
 
+    let paymentIntentClientSecret: string | null = null
+
     if (amountInCents > 0) {
       console.log("[v0] Creating one-time payment:", amountInCents, currency)
 
@@ -98,8 +100,8 @@ export async function POST(request: NextRequest) {
         currency: currency.toLowerCase(),
         customer: customer.id,
         payment_method: paymentMethodId,
-        off_session: true,
         confirm: true,
+        return_url: `${appUrl}${locale === "it" ? "/it/upsell2" : "/upsell2"}`,
         description: "Versia Garden Kit - Shipping fee",
         metadata: {
           type: "one-time-shipping",
@@ -108,7 +110,10 @@ export async function POST(request: NextRequest) {
       })
       console.log("[v0] PaymentIntent created:", paymentIntent.id, "Status:", paymentIntent.status)
 
-      if (paymentIntent.status !== "succeeded") {
+      if (paymentIntent.status === "requires_action") {
+        console.log("[v0] Payment requires 3DS authentication, returning client_secret")
+        paymentIntentClientSecret = paymentIntent.client_secret
+      } else if (paymentIntent.status !== "succeeded") {
         console.error("[v0] Payment failed:", paymentIntent.status)
         return NextResponse.json(
           { error: `Payment failed with status: ${paymentIntent.status}`, success: false },
@@ -213,6 +218,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       redirectUrl,
+      requiresAction: !!paymentIntentClientSecret,
+      clientSecret: paymentIntentClientSecret,
     })
   } catch (error: any) {
     console.error("[v0] Stripe payment error:", error)

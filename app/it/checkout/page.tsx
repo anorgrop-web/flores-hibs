@@ -187,6 +187,32 @@ function CheckoutForm() {
     if (session.error) {
       setErrorMessage(session.error)
       setIsLoading(false)
+    } else if (session.requiresAction && session.clientSecret) {
+      // Gestione autenticazione 3D Secure
+      const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(session.clientSecret)
+      if (confirmError) {
+        setErrorMessage(confirmError.message || "Autenticazione fallita. Riprova.")
+        setIsLoading(false)
+      } else if (paymentIntent && paymentIntent.status === "succeeded") {
+        sessionStorage.setItem(
+          "orderData",
+          JSON.stringify({
+            value: total,
+            currency: currency,
+            content_ids: items.map((item) => item.id),
+            contents: items.map((item) => ({
+              id: item.id,
+              quantity: item.quantity,
+              item_price: item.price,
+            })),
+            num_items: items.reduce((sum, item) => sum + item.quantity, 0),
+          }),
+        )
+        window.location.href = session.redirectUrl
+      } else {
+        setErrorMessage("Il pagamento non è stato completato. Riprova.")
+        setIsLoading(false)
+      }
     } else if (session.success && session.redirectUrl) {
       sessionStorage.setItem(
         "orderData",
@@ -510,6 +536,32 @@ function CheckoutForm() {
           ev.complete("fail")
           setErrorMessage(session.error)
           setIsLoading(false)
+        } else if (session.requiresAction && session.clientSecret) {
+          ev.complete("success")
+          const { error: confirmError, paymentIntent } = await stripe!.confirmCardPayment(session.clientSecret)
+          if (confirmError) {
+            setErrorMessage(confirmError.message || "Autenticazione fallita. Riprova.")
+            setIsLoading(false)
+          } else if (paymentIntent && paymentIntent.status === "succeeded") {
+            sessionStorage.setItem(
+              "orderData",
+              JSON.stringify({
+                value: total,
+                currency: currency,
+                content_ids: items.map((item) => item.id),
+                contents: items.map((item) => ({
+                  id: item.id,
+                  quantity: item.quantity,
+                  item_price: item.price,
+                })),
+                num_items: items.reduce((sum, item) => sum + item.quantity, 0),
+              }),
+            )
+            window.location.href = session.redirectUrl
+          } else {
+            setErrorMessage("Il pagamento non è stato completato. Riprova.")
+            setIsLoading(false)
+          }
         } else if (session.success && session.redirectUrl) {
           sessionStorage.setItem(
             "orderData",
