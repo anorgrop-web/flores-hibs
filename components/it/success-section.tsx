@@ -13,6 +13,7 @@ export function SuccessSection() {
                 alt="Piante di Ibisco"
                 width={800}
                 height={600}
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="w-full h-auto"
               />
             </div>

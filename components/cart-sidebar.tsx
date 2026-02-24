@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { X, Minus, Plus, Trash2 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/lib/cart-context"
@@ -100,11 +101,13 @@ export function CartSidebar() {
             <div className="space-y-4">
               {items.map((item) => (
                 <div key={item.id} className="flex gap-3 pb-4 border-b">
-                  <div className="w-20 h-20 flex-shrink-0 rounded-md overflow-hidden bg-gray-100">
-                    <img
+                  <div className="w-20 h-20 flex-shrink-0 rounded-md overflow-hidden bg-gray-100 relative">
+                    <Image
                       src={item.image || "/placeholder.svg"}
                       alt={item.name}
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="80px"
+                      className="object-cover"
                     />
                   </div>
 
@@ -198,7 +201,7 @@ export function CartSidebar() {
 
             {/* Payment Icons */}
             <div className="flex items-center justify-center gap-2 pt-2">
-              <img src="/images/design-mode/Pagamento%20seguro.webp" alt="Payment methods" className="h-8 opacity-70" />
+              <Image src="/images/design-mode/Pagamento%20seguro.webp" alt="Payment methods" width={300} height={32} sizes="300px" className="h-8 w-auto opacity-70" />
             </div>
           </div>
         )}

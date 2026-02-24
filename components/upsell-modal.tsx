@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
@@ -46,9 +47,12 @@ export function UpsellModal({ isOpen, onClose, onAccept, onDecline }: UpsellModa
 
           {/* Image */}
           <div className="w-full rounded-lg overflow-hidden">
-            <img
+            <Image
               src="/images/design-mode/Group%201089.png"
               alt="Plus Kit with Hibiscus, Sunflower, and Petunia plants"
+              width={600}
+              height={400}
+              sizes="(max-width: 512px) 100vw, 512px"
               className="w-full h-auto"
             />
           </div>

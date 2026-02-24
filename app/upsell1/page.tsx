@@ -2,6 +2,7 @@
 
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Play, Check } from 'lucide-react'
 
@@ -111,9 +112,12 @@ export default function Upsell1Page() {
                 </div>
 
                 <div className="pb-4">
-                  <img
+                  <Image
                     src="https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/Gemini_Generated_Image_fclrdyfclrdyfclr.png"
                     alt="Botanist with Practical Guide"
+                    width={280}
+                    height={200}
+                    sizes="280px"
                     className="rounded-lg shadow-lg"
                   />
                   <p className="text-xs text-gray-600 mt-2 font-semibold">

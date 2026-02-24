@@ -50,9 +50,6 @@ function CheckoutForm() {
   const stripe = useStripe()
   const elements = useElements()
   const { items, getSubtotal } = useCart()
-  console.log("[v0] Checkout items:", JSON.stringify(items))
-  console.log("[v0] Checkout subtotal:", getSubtotal())
-  console.log("[v0] localStorage cart:", typeof window !== 'undefined' ? localStorage.getItem("cart") : "SSR")
   const [detectedBrand, setDetectedBrand] = useState<string | null>(null)
   const [postcode, setPostcode] = useState("")
   const [selectedShipping, setSelectedShipping] = useState("standard")
@@ -549,10 +546,13 @@ function CheckoutForm() {
         <header className="border-b border-border bg-background sticky top-0 z-50">
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/">
-              <img
+              <Image
                 src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png"
                 alt="Versia Garden"
+                width={160}
+                height={48}
                 className="h-12 w-auto"
+                priority
               />
             </Link>
             <Button variant="ghost" size="icon" className="relative" type="button">

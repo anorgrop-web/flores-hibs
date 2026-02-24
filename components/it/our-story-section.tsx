@@ -13,6 +13,7 @@ export function OurStorySection() {
                 src="/images/design-mode/Gemini_Generated_Image_bh8t6jbh8t6jbh8t.png"
                 alt="Helena Viana, fondatrice di Versia Garden, in serra"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -53,6 +54,7 @@ export function OurStorySection() {
               alt="Processo di crescita dell'ibisco"
               width={1200}
               height={600}
+              sizes="100vw"
               className="w-full h-auto"
             />
           </div>
