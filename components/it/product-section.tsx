@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState, useRef, useEffect, useCallback } from "react"
+import Image from "next/image"
 import { Heart, Shield, Truck, Star, Check, Minus, Plus, ChevronLeft, ChevronRight, ShoppingCart, Package } from 'lucide-react'
 import useEmblaCarousel from "embla-carousel-react"
 import { Button } from "@/components/ui/button"
@@ -238,10 +239,13 @@ export function ProductSection() {
                 <div className="flex h-full touch-pan-y">
                   {PRODUCT_IMAGES.map((image, index) => (
                     <div key={index} className="flex-[0_0_100%] min-w-0 h-full relative">
-                      <img
+                      <Image
                         src={image || "/placeholder.svg"}
                         alt={`Immagine prodotto ${index + 1}`}
-                        className="h-full w-full object-cover"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover"
+                        priority={index === 0}
                       />
                     </div>
                   ))}
@@ -288,9 +292,12 @@ export function ProductSection() {
                     currentSlide === index ? "border-black" : "border-gray-200 hover:border-gray-300",
                   )}
                 >
-                  <img
+                  <Image
                     src={image || "/placeholder.svg"}
                     alt={`Miniatura ${index + 1}`}
+                    width={80}
+                    height={80}
+                    sizes="80px"
                     className="h-full w-full object-cover"
                   />
                 </button>
@@ -458,9 +465,12 @@ export function ProductSection() {
             </div>
 
             <div className="flex justify-center pt-4">
-              <img
+              <Image
                 src="/images/design-mode/Pagamento%20seguro.webp"
                 alt="Metodi di Pagamento Sicuri"
+                width={448}
+                height={40}
+                sizes="(max-width: 448px) 100vw, 448px"
                 className="max-w-full h-auto w-full max-w-md"
               />
             </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from "next/image"
 import { Button } from '@/components/ui/button'
 import {
   Carousel,
@@ -99,10 +100,12 @@ export function CustomerReviewsSection() {
                 <CarouselItem key={review.id} className="md:basis-1/3">
                   <div className="flex flex-col h-full">
                     <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-4">
-                      <img
+                      <Image
                         src={review.image || "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/Gemini_Generated_Image_u2en2du2en2du2en.png"}
                         alt={`Recensione cliente ${review.id}`}
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover"
                       />
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-sm flex-1">

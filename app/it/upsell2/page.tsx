@@ -147,7 +147,7 @@ export default function Upsell2PageIT() {
       <header className="border-b border-border bg-background">
         <div className="container mx-auto px-4 py-4">
           <Link href="/it">
-            <img src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png" alt="Versia Garden" className="h-12 w-auto" />
+            <Image src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png" alt="Versia Garden" width={160} height={48} className="h-12 w-auto" priority />
           </Link>
         </div>
       </header>
@@ -179,6 +179,7 @@ export default function Upsell2PageIT() {
                 src={images[currentImageIndex] || "/placeholder.svg"}
                 alt="Kit Pianta Ibisco"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -207,6 +208,7 @@ export default function Upsell2PageIT() {
                       src={img || "/placeholder.svg"}
                       alt={`Miniatura ${idx + 1}`}
                       fill
+                      sizes="80px"
                       className="object-cover"
                     />
                   </button>
