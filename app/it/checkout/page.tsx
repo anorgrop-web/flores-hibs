@@ -25,6 +25,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Script from "next/script"
 import { cn } from "@/lib/utils"
+import { trackHybridEvent } from "@/components/hybrid-tracker"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "")
 
@@ -308,23 +309,23 @@ function CheckoutForm() {
   const hasCompleteAddress = address.trim().length > 0 && city.trim().length > 0 && postcode.trim().length > 0
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.fbq && items.length > 0) {
-      window.fbq("track", "InitiateCheckout", {
-        value: total,
-        currency: currency,
-        content_ids: items.map((item) => item.id),
-        contents: items.map((item) => ({
-          id: item.id,
-          quantity: item.quantity,
-          item_price: item.price,
-        })),
-        num_items: items.reduce((sum, item) => sum + item.quantity, 0),
-      })
-      console.log("[v0] Facebook Pixel InitiateCheckout event fired", {
-        value: total,
-        currency: currency,
-        num_items: items.reduce((sum, item) => sum + item.quantity, 0),
-      })
+    if (items.length > 0) {
+      trackHybridEvent(
+        "InitiateCheckout",
+        {
+          value: total,
+          currency: currency,
+          locale: "it",
+          content_ids: items.map((item) => item.id),
+          contents: items.map((item) => ({
+            id: item.id,
+            quantity: item.quantity,
+            item_price: item.price,
+          })),
+          num_items: items.reduce((sum, item) => sum + item.quantity, 0),
+        },
+        { email, firstName, lastName }
+      )
     }
   }, [])
 

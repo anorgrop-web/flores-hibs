@@ -6,12 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { CheckCircle, Mail, ArrowRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-
-declare global {
-  interface Window {
-    fbq?: (action: string, eventName: string, params?: any) => void
-  }
-}
+import { trackHybridEvent } from "@/components/hybrid-tracker"
 
 export default function ThankYouPageIT() {
   const searchParams = useSearchParams()
@@ -23,18 +18,28 @@ export default function ThankYouPageIT() {
     const emailParam = searchParams.get("email")
     setEmail(emailParam)
 
-    if (typeof window !== "undefined" && window.fbq) {
-      const orderDataStr = sessionStorage.getItem("orderData")
-      if (orderDataStr) {
-        try {
-          const orderData = JSON.parse(orderDataStr)
-          window.fbq("track", "Purchase", orderData)
-          console.log("[v0] Facebook Pixel Purchase event fired", orderData)
-          // Clear the order data after firing the event
-          sessionStorage.removeItem("orderData")
-        } catch (error) {
-          console.error("[v0] Error parsing order data for Facebook Pixel:", error)
-        }
+    const orderDataStr = sessionStorage.getItem("orderData")
+    if (orderDataStr) {
+      try {
+        const orderData = JSON.parse(orderDataStr)
+        const purchaseEventId = crypto.randomUUID()
+
+        trackHybridEvent(
+          "Purchase",
+          {
+            ...orderData,
+            locale: "it",
+          },
+          {
+            email: emailParam || undefined,
+          },
+          purchaseEventId
+        )
+
+        // Clear the order data after firing the event
+        sessionStorage.removeItem("orderData")
+      } catch (error) {
+        console.error("[hybrid-tracker] Error parsing order data:", error)
       }
     }
   }, [searchParams])
