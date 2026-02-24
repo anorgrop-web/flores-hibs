@@ -356,6 +356,7 @@ function CheckoutForm() {
       {items.length > 0 && (
         <div className="bg-black text-white text-center py-3 rounded-lg mb-6">
           <p className="text-sm font-medium">Cart reserved for {formatTime(timeLeft)}</p>
+          <p className="text-xs text-gray-300 mt-1">Order now and your hibiscus will be blooming by the first days of spring.</p>
         </div>
       )}
 

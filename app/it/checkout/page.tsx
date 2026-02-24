@@ -356,6 +356,7 @@ function CheckoutForm() {
       {items.length > 0 && (
         <div className="bg-black text-white text-center py-3 rounded-lg mb-6">
           <p className="text-sm font-medium">Carrello riservato per {formatTime(timeLeft)}</p>
+          <p className="text-xs text-gray-300 mt-1">Ordina ora e il tuo ibisco fiorirà già dai primi giorni di primavera.</p>
         </div>
       )}
 

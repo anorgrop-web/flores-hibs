@@ -4,7 +4,7 @@ export function ScrollingMarquee() {
   const messages = [
     "Garanzia di Crescita",
     "Pagamento Sicuro e Spedizione Tracciata Veloce",
-    "Scorte Limitate",
+    "La primavera inizia il 20 marzo — Pianta ora, fioritura tutta la stagione | Spedizione gratuita su tutti i kit",
     "Garanzia di Crescita",
     "Pagamento Sicuro e Spedizione Tracciata Veloce",
   ]
