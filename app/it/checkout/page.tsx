@@ -822,7 +822,7 @@ function CheckoutForm() {
               <div className="mb-6">
                 <h2 className="text-xl font-semibold mb-2">Pagamento Sicuro</h2>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Tutte le transazioni sono sicure e crittografate. Il tuo ordine include resi gratuiti e accesso 24/7 al nostro pluripremiato servizio clienti
+                  Tutte le transazioni sono sicure e crittografate. Il tuo ordine è protetto dalla nostra garanzia di soddisfazione di 30 giorni.
                 </p>
 
                 <div className="border border-border rounded-lg overflow-hidden">

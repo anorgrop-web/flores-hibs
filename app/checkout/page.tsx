@@ -822,8 +822,7 @@ function CheckoutForm() {
               <div className="mb-6">
                 <h2 className="text-xl font-semibold mb-2">Secure Checkout</h2>
                 <p className="text-sm text-muted-foreground mb-4">
-                  All transactions are secure and encrypted. Your order includes free returns and 24/7 access to our
-                  award-winning customer service
+All transactions are secure and encrypted. Your order is protected by our 30-day satisfaction guarantee.
                 </p>
 
                 <div className="border border-border rounded-lg overflow-hidden">
@@ -1014,7 +1013,7 @@ function CheckoutForm() {
                 className="w-full h-14 bg-[#016630] hover:bg-[#014d24] text-white text-base font-semibold mb-4"
                 size="lg"
               >
-                {isLoading ? "Processing..." : `Complete Purchase (£${currency})`}
+                {isLoading ? "Processing..." : `Complete Purchase — £${total.toFixed(2)}`}
               </Button>
 
               {/* Footer Links */}

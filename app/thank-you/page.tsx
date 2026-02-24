@@ -89,8 +89,8 @@ export default function ThankYouPage() {
           {upsellAccepted && (
             <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6 mb-8 text-left">
               <p className="text-base text-emerald-900">
-                <strong>Parabéns!</strong> Seu acesso ao <strong>Curso Mestre de Jardinagem</strong> foi liberado.
-                Verifique seu e-mail para as instruções de acesso.
+                <strong>Congratulations!</strong> Your access to the <strong>Master Gardening Video Course</strong> has been activated.
+                Check your email for access instructions.
               </p>
             </div>
           )}
