@@ -10,16 +10,17 @@ import { UpsellModal } from "@/components/upsell-modal"
 import { useCart } from "@/lib/cart-context"
 
 const PRODUCT_IMAGES = [
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/image%20960.png",
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/image%20894.png",
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/Hb%20vermelho.png",
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/Hb%20amarelo.png",
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/Hb%20rosa%201.1.png",
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/Hb%20roxo%201.1.png",
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/image%20957.png",
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/image%20958.png",
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/image%20959.png",
-  "https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/image%20961.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg1.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg2.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg3.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg5.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg6.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg7.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg8.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg9.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg10.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg11.png",
+  "https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/vg12.png",
 ]
 
 const COLOR_IMAGE_MAP: Record<string, number> = {
