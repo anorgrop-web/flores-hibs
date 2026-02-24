@@ -50,7 +50,7 @@ export default function ThankYouPageIT() {
       <header className="border-b border-border bg-background">
         <div className="container mx-auto px-4 py-4">
           <Link href="/it">
-            <Image src="/images/design-mode/logoversiagardemsemfundo%201.png" alt="Versia Garden" width={120} height={50} className="h-12 w-auto" />
+            <Image src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png" alt="Versia Garden" width={120} height={50} className="h-12 w-auto" />
           </Link>
         </div>
       </header>

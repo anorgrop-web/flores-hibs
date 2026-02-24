@@ -147,7 +147,7 @@ export default function Upsell2Page() {
       <header className="border-b border-border bg-background">
         <div className="container mx-auto px-4 py-4">
           <Link href="/">
-            <img src="https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/logoversiagardemsemfundo%201.png" alt="Versia Garden" className="h-12 w-auto" />
+            <img src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png" alt="Versia Garden" className="h-12 w-auto" />
           </Link>
         </div>
       </header>

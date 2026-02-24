@@ -547,7 +547,7 @@ function CheckoutForm() {
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/it">
               <img
-                src="/images/design-mode/logoversiagardemsemfundo%201.png"
+                src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png"
                 alt="Versia Garden"
                 className="h-12 w-auto"
               />
