@@ -6,12 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { CheckCircle, Mail, ArrowRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-
-declare global {
-  interface Window {
-    fbq?: (action: string, eventName: string, params?: any) => void
-  }
-}
+import { trackHybridEvent } from "@/components/hybrid-tracker"
 
 export default function ThankYouPageIT() {
   const searchParams = useSearchParams()
@@ -23,18 +18,28 @@ export default function ThankYouPageIT() {
     const emailParam = searchParams.get("email")
     setEmail(emailParam)
 
-    if (typeof window !== "undefined" && window.fbq) {
-      const orderDataStr = sessionStorage.getItem("orderData")
-      if (orderDataStr) {
-        try {
-          const orderData = JSON.parse(orderDataStr)
-          window.fbq("track", "Purchase", orderData)
-          console.log("[v0] Facebook Pixel Purchase event fired", orderData)
-          // Clear the order data after firing the event
-          sessionStorage.removeItem("orderData")
-        } catch (error) {
-          console.error("[v0] Error parsing order data for Facebook Pixel:", error)
-        }
+    const orderDataStr = sessionStorage.getItem("orderData")
+    if (orderDataStr) {
+      try {
+        const orderData = JSON.parse(orderDataStr)
+        const purchaseEventId = crypto.randomUUID()
+
+        trackHybridEvent(
+          "Purchase",
+          {
+            ...orderData,
+            locale: "it",
+          },
+          {
+            email: emailParam || undefined,
+          },
+          purchaseEventId
+        )
+
+        // Clear the order data after firing the event
+        sessionStorage.removeItem("orderData")
+      } catch (error) {
+        console.error("[hybrid-tracker] Error parsing order data:", error)
       }
     }
   }, [searchParams])
@@ -45,7 +50,7 @@ export default function ThankYouPageIT() {
       <header className="border-b border-border bg-background">
         <div className="container mx-auto px-4 py-4">
           <Link href="/it">
-            <Image src="/images/design-mode/logoversiagardemsemfundo%201.png" alt="Versia Garden" width={120} height={50} className="h-12 w-auto" />
+            <Image src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png" alt="Versia Garden" width={120} height={50} className="h-12 w-auto" />
           </Link>
         </div>
       </header>
@@ -83,7 +88,7 @@ export default function ThankYouPageIT() {
           {upsellAccepted && (
             <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6 mb-8 text-left">
               <p className="text-base text-emerald-900">
-                <strong>Congratulazioni!</strong> Il tuo accesso al <strong>Corso Maestro di Giardinaggio</strong> è stato attivato.
+                <strong>Congratulazioni!</strong> Il tuo accesso al <strong>Corso Video Maestro di Giardinaggio</strong> è stato attivato.
                 Controlla la tua email per le istruzioni di accesso.
               </p>
             </div>

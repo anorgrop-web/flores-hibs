@@ -147,7 +147,7 @@ export default function Upsell2Page() {
       <header className="border-b border-border bg-background">
         <div className="container mx-auto px-4 py-4">
           <Link href="/">
-            <img src="https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/logoversiagardemsemfundo%201.png" alt="Versia Garden" className="h-12 w-auto" />
+            <img src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png" alt="Versia Garden" className="h-12 w-auto" />
           </Link>
         </div>
       </header>
@@ -156,10 +156,10 @@ export default function Upsell2Page() {
         {/* Header Section */}
         <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4 text-balance px-2">
-            Congratulations! You've Been Selected to Receive Double the Plants for Your Home.
+            Imagine 8 Vibrant Colors Blooming in Your Garden Instead of Just 4.
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-4xl mx-auto text-pretty px-2">
-            That's right! As our newest customer, you've earned a unique chance to take home double the flowers – another 4-Hibiscus Plant Kit – with 50% OFF this second kit. Take advantage of this exclusive opportunity! There's no need to re-enter your details, just click the button below to confirm.
+            Your first kit will fill your home with 4 stunning colors. Now picture doubling that — a complete rainbow of hibiscus greeting you every morning. As a thank you for your order, we're offering a second 4-Hibiscus Kit at 50% OFF. No need to re-enter your details — just click below to add it to your shipment.
           </p>
         </div>
 
@@ -321,7 +321,7 @@ export default function Upsell2Page() {
               variant="outline"
               className="w-full h-10 sm:h-12 text-sm sm:text-base"
             >
-              Decline offer
+              No thanks, 4 colors is enough for me
             </Button>
 
             {errorMessage && (

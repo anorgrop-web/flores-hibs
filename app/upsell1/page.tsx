@@ -82,9 +82,9 @@ export default function Upsell1Page() {
 
       <main className="w-full max-w-md mx-auto px-3 sm:px-4 py-6 sm:py-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6 sm:mb-8 leading-tight px-2">
-          CONGRATULATIONS! YOU ARE ONE OF OUR{' '}
+          YOUR HIBISCUS KIT IS ON ITS WAY!{' '}
           <span className="bg-black text-white px-2 py-1 inline-block">
-            FIRST 100 CUSTOMERS
+            DON'T MISS THIS
           </span>
         </h1>
 
@@ -96,13 +96,13 @@ export default function Upsell1Page() {
               <div className="relative h-full flex flex-col items-center justify-between p-6 text-center">
                 <div className="pt-8">
                   <h2 className="text-white text-2xl font-bold drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                    PRACTICAL LESSON GUIDE
+                    MASTER GARDENING VIDEO COURSE
                   </h2>
                 </div>
 
                 <div className="flex-1 flex flex-col items-center justify-center space-y-6">
                   <p className="text-white text-lg font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                    20 EXCLUSIVE, PRACTICAL AND VIBRANT VIDEO LESSONS
+                    20 EXCLUSIVE VIDEO LESSONS TO MAKE YOUR HIBISCUS THRIVE
                   </p>
                   
                   <div className="bg-white/90 backdrop-blur-sm rounded-full p-6 shadow-xl">
@@ -127,11 +127,11 @@ export default function Upsell1Page() {
 
         <div className="text-center mb-4 sm:mb-6 px-2">
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-            AND AS A THANK YOU, OUR HEAD BOTANIST HAS GIVEN YOU A SPECIAL GIFT: 20 EXCLUSIVE VIDEO LESSONS AND{' '}
+            Most first-time growers make 3 critical mistakes in the first week that kill their flowers. Our Head Botanist created 20 exclusive video lessons to make sure YOUR hibiscus thrives —{' '}
             <span className="bg-[#66bb6a] text-white px-2 py-1 font-bold inline-block">
               COMPLETELY FREE
             </span>
-            . YOU JUST HAVE TO CLICK THE BUTTON BELOW:
+            . Just click the button below to unlock instant access:
           </p>
         </div>
 
@@ -151,19 +151,19 @@ export default function Upsell1Page() {
             <li className="flex items-start gap-3">
               <Check className="h-5 w-5 text-[#66bb6a] flex-shrink-0 mt-0.5" />
               <span className="text-sm text-gray-700">
-                20 exclusive video lessons with practical tips for vibrant hibiscus
+                Learn the exact watering schedule and sunlight needs for each hibiscus color
               </span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="h-5 w-5 text-[#66bb6a] flex-shrink-0 mt-0.5" />
               <span className="text-sm text-gray-700">
-                Immediate access after confirming your order
+                Discover how to protect your plants through their first winter — even in cold climates
               </span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="h-5 w-5 text-[#66bb6a] flex-shrink-0 mt-0.5" />
               <span className="text-sm text-gray-700">
-                100% Free - No additional charges today
+                100% Free — No charges today, no credit card required for access
               </span>
             </li>
           </ul>
@@ -173,7 +173,7 @@ export default function Upsell1Page() {
           onClick={handleDecline}
           className="w-full text-center text-xs sm:text-sm text-gray-500 hover:text-gray-700 underline px-2"
         >
-          No, thanks. I prefer to miss out on this unique offer.
+          No thanks, I'll figure it out on my own.
         </button>
 
         {errorMessage && (

@@ -3,20 +3,20 @@ import { Flower2 } from "lucide-react"
 export function FeaturesSection() {
   const features = [
     {
-      title: "Eye-Catching Blooms",
-      description: "Each flower boasts multiple layers of ruffled petals for a fuller, more dramatic look.",
+      title: "Blooms Ready for Spring",
+      description: "Plant now and enjoy the first flowers within weeks — perfectly timed for the new season.",
     },
     {
-      title: "Long Flowering Season",
-      description: "Enjoy continuous blooms from summer into early fall.",
+      title: "Color That Lasts All Season",
+      description: "From the first warm days through early autumn, your hibiscus will keep blooming non-stop.",
     },
     {
-      title: "Perfect for any space",
-      description: "Whether planted in pots, garden beds, or along walkways, they shine wherever they grow.",
+      title: "Thrives Anywhere",
+      description: "Pots, garden beds, balconies, or walkways — these plants adapt to any space you have.",
     },
     {
-      title: "Butterfly & Hummingbird Magnet",
-      description: "These tropical beauties attract pollinators, adding life and movement to your garden.",
+      title: "Brings Your Garden to Life",
+      description: "Vibrant petals attract butterflies and pollinators, turning your outdoor space into a living display.",
     },
   ]
 
@@ -36,12 +36,11 @@ export function FeaturesSection() {
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-balance">
-            Unleash a Tropical Explosion of Petals: Rare Double Hibiscus Young Plants
+            The Perfect Spring Garden Starts With What You Plant Today.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto text-pretty">
-            Bring a lush, exotic vibe to your garden with our{" "}
-            <span className="font-semibold text-foreground">Double Hibiscus</span> Starter Plants. Known for their full,
-            layered blooms and vibrant colors, these flowers create a striking display that's impossible to ignore.
+            While others wait for spring, smart gardeners are already planting. Get your{" "}
+            <span className="font-semibold text-foreground">Double Hibiscus</span> Starter Kit in the ground now and watch them burst into vibrant, layered blooms right as the warm days arrive — the perfect window to start is closing.
           </p>
         </div>
 

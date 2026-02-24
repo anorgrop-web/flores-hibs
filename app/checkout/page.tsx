@@ -25,6 +25,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Script from "next/script"
 import { cn } from "@/lib/utils"
+import { trackHybridEvent } from "@/components/hybrid-tracker"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "")
 
@@ -49,6 +50,9 @@ function CheckoutForm() {
   const stripe = useStripe()
   const elements = useElements()
   const { items, getSubtotal } = useCart()
+  console.log("[v0] Checkout items:", JSON.stringify(items))
+  console.log("[v0] Checkout subtotal:", getSubtotal())
+  console.log("[v0] localStorage cart:", typeof window !== 'undefined' ? localStorage.getItem("cart") : "SSR")
   const [detectedBrand, setDetectedBrand] = useState<string | null>(null)
   const [postcode, setPostcode] = useState("")
   const [selectedShipping, setSelectedShipping] = useState("standard")
@@ -308,23 +312,23 @@ function CheckoutForm() {
   const hasCompleteAddress = address.trim().length > 0 && city.trim().length > 0 && postcode.trim().length > 0
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.fbq && items.length > 0) {
-      window.fbq("track", "InitiateCheckout", {
-        value: total,
-        currency: currency,
-        content_ids: items.map((item) => item.id),
-        contents: items.map((item) => ({
-          id: item.id,
-          quantity: item.quantity,
-          item_price: item.price,
-        })),
-        num_items: items.reduce((sum, item) => sum + item.quantity, 0),
-      })
-      console.log("[v0] Facebook Pixel InitiateCheckout event fired", {
-        value: total,
-        currency: currency,
-        num_items: items.reduce((sum, item) => sum + item.quantity, 0),
-      })
+    if (items.length > 0) {
+      trackHybridEvent(
+        "InitiateCheckout",
+        {
+          value: total,
+          currency: currency,
+          locale: "en",
+          content_ids: items.map((item) => item.id),
+          contents: items.map((item) => ({
+            id: item.id,
+            quantity: item.quantity,
+            item_price: item.price,
+          })),
+          num_items: items.reduce((sum, item) => sum + item.quantity, 0),
+        },
+        { email, firstName, lastName }
+      )
     }
   }, []) // Empty dependency array - fires once on mount
 
@@ -355,6 +359,7 @@ function CheckoutForm() {
       {items.length > 0 && (
         <div className="bg-black text-white text-center py-3 rounded-lg mb-6">
           <p className="text-sm font-medium">Cart reserved for {formatTime(timeLeft)}</p>
+          <p className="text-xs text-gray-300 mt-1">Order now and your hibiscus will be blooming by the first days of spring.</p>
         </div>
       )}
 
@@ -545,7 +550,7 @@ function CheckoutForm() {
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/">
               <img
-                src="/images/design-mode/logoversiagardemsemfundo%201.png"
+                src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png"
                 alt="Versia Garden"
                 className="h-12 w-auto"
               />
@@ -821,8 +826,7 @@ function CheckoutForm() {
               <div className="mb-6">
                 <h2 className="text-xl font-semibold mb-2">Secure Checkout</h2>
                 <p className="text-sm text-muted-foreground mb-4">
-                  All transactions are secure and encrypted. Your order includes free returns and 24/7 access to our
-                  award-winning customer service
+All transactions are secure and encrypted. Your order is protected by our 30-day satisfaction guarantee.
                 </p>
 
                 <div className="border border-border rounded-lg overflow-hidden">
@@ -1013,7 +1017,7 @@ function CheckoutForm() {
                 className="w-full h-14 bg-[#016630] hover:bg-[#014d24] text-white text-base font-semibold mb-4"
                 size="lg"
               >
-                {isLoading ? "Processing..." : `Complete Purchase (£${currency})`}
+                {isLoading ? "Processing..." : `Complete Purchase — £${total.toFixed(2)}`}
               </Button>
 
               {/* Footer Links */}

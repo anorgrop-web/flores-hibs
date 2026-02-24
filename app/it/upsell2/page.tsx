@@ -147,7 +147,7 @@ export default function Upsell2PageIT() {
       <header className="border-b border-border bg-background">
         <div className="container mx-auto px-4 py-4">
           <Link href="/it">
-            <img src="https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/logoversiagardemsemfundo%201.png" alt="Versia Garden" className="h-12 w-auto" />
+            <img src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png" alt="Versia Garden" className="h-12 w-auto" />
           </Link>
         </div>
       </header>
@@ -156,10 +156,10 @@ export default function Upsell2PageIT() {
         {/* Header Section */}
         <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4 text-balance px-2">
-            Congratulazioni! Sei stato selezionato per ricevere il doppio delle piante per la tua casa.
+            Immagina 8 Colori Vibranti in Fiore nel Tuo Giardino Invece di Solo 4.
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground max-w-4xl mx-auto text-pretty px-2">
-            Esatto! Come nostro nuovo cliente, hai guadagnato un'opportunità unica per portare a casa il doppio dei fiori – un altro Kit Pianta Ibisco da 4 – con il 50% DI SCONTO su questo secondo kit. Approfitta di questa offerta esclusiva! Non è necessario reinserire i tuoi dati, basta cliccare il pulsante qui sotto per confermare.
+            Il tuo primo kit riempirà la tua casa con 4 colori meravigliosi. Ora immagina di raddoppiare tutto — un arcobaleno completo di ibisco che ti accoglie ogni mattina. Come ringraziamento per il tuo ordine, ti offriamo un secondo Kit da 4 Ibisco al 50% DI SCONTO. Non è necessario reinserire i tuoi dati — clicca qui sotto per aggiungerlo alla tua spedizione.
           </p>
         </div>
 
@@ -321,7 +321,7 @@ export default function Upsell2PageIT() {
               variant="outline"
               className="w-full h-10 sm:h-12 text-sm sm:text-base"
             >
-              Rifiuta offerta
+              No grazie, 4 colori mi bastano
             </Button>
 
             {errorMessage && (

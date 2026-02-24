@@ -57,7 +57,7 @@ export function Header() {
           {/* Logo - Centered on mobile, centered on desktop */}
           <div className="absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0 lg:flex-1 lg:flex lg:justify-center">
             <a href="#" className="flex items-center">
-              <img src="/images/design-mode/logoversiagardemsemfundo%201.png" alt="Logo" className="h-12 w-auto" />
+              <img src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png" alt="Logo" className="h-12 w-auto" />
             </a>
           </div>
 

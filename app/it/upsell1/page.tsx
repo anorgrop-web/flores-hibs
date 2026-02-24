@@ -82,9 +82,9 @@ export default function Upsell1PageIT() {
 
       <main className="w-full max-w-md mx-auto px-3 sm:px-4 py-6 sm:py-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-6 sm:mb-8 leading-tight px-2">
-          CONGRATULAZIONI! SEI UNO DEI NOSTRI{' '}
+          IL TUO KIT DI IBISCO È IN ARRIVO!{' '}
           <span className="bg-black text-white px-2 py-1 inline-block">
-            PRIMI 100 CLIENTI
+            NON PERDERE QUESTO
           </span>
         </h1>
 
@@ -96,13 +96,13 @@ export default function Upsell1PageIT() {
               <div className="relative h-full flex flex-col items-center justify-between p-6 text-center">
                 <div className="pt-8">
                   <h2 className="text-white text-2xl font-bold drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                    GUIDA PRATICA ALLE LEZIONI
+                    CORSO VIDEO MAESTRO DI GIARDINAGGIO
                   </h2>
                 </div>
 
                 <div className="flex-1 flex flex-col items-center justify-center space-y-6">
                   <p className="text-white text-lg font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                    20 LEZIONI VIDEO ESCLUSIVE, PRATICHE E VIVACI
+                    20 LEZIONI VIDEO ESCLUSIVE PER FAR FIORIRE IL TUO IBISCO
                   </p>
                   
                   <div className="bg-white/90 backdrop-blur-sm rounded-full p-6 shadow-xl">
@@ -127,11 +127,11 @@ export default function Upsell1PageIT() {
 
         <div className="text-center mb-4 sm:mb-6 px-2">
           <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-            E COME RINGRAZIAMENTO, IL NOSTRO BOTANICO CAPO TI HA FATTO UN REGALO SPECIALE: 20 LEZIONI VIDEO ESCLUSIVE E{' '}
+            La maggior parte dei nuovi coltivatori commette 3 errori critici nella prima settimana che uccidono i loro fiori. Il nostro Botanico Capo ha creato 20 lezioni video esclusive per assicurarsi che il TUO ibisco fiorisca —{' '}
             <span className="bg-[#66bb6a] text-white px-2 py-1 font-bold inline-block">
               COMPLETAMENTE GRATIS
             </span>
-            . DEVI SOLO CLICCARE IL PULSANTE QUI SOTTO:
+            . Clicca il pulsante qui sotto per accedere subito:
           </p>
         </div>
 
@@ -151,19 +151,19 @@ export default function Upsell1PageIT() {
             <li className="flex items-start gap-3">
               <Check className="h-5 w-5 text-[#66bb6a] flex-shrink-0 mt-0.5" />
               <span className="text-sm text-gray-700">
-                20 lezioni video esclusive con consigli pratici per ibisco vibrante
+                Impara il programma esatto di irrigazione e le esigenze di luce per ogni colore di ibisco
               </span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="h-5 w-5 text-[#66bb6a] flex-shrink-0 mt-0.5" />
               <span className="text-sm text-gray-700">
-                Accesso immediato dopo aver confermato il tuo ordine
+                Scopri come proteggere le tue piante durante il primo inverno — anche nei climi freddi
               </span>
             </li>
             <li className="flex items-start gap-3">
               <Check className="h-5 w-5 text-[#66bb6a] flex-shrink-0 mt-0.5" />
               <span className="text-sm text-gray-700">
-                100% Gratis - Nessun costo aggiuntivo oggi
+                100% Gratis — Nessun costo oggi, nessuna carta di credito richiesta per l'accesso
               </span>
             </li>
           </ul>
@@ -173,7 +173,7 @@ export default function Upsell1PageIT() {
           onClick={handleDecline}
           className="w-full text-center text-xs sm:text-sm text-gray-500 hover:text-gray-700 underline px-2"
         >
-          No, grazie. Preferisco perdere questa offerta unica.
+          No grazie, farò da solo.
         </button>
 
         {errorMessage && (

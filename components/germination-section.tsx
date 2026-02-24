@@ -24,7 +24,7 @@ export function GerminationSection() {
           <div className="mt-8 md:mt-0 md:w-1/2 md:order-2">
             <div className="relative rounded-2xl overflow-hidden">
               <img
-                src="/images/design-mode/image%20895.png"
+                src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/_prompt_professional_2k_202602241415.jpeg"
                 alt="Germination tray with seedlings and hand opening lid"
                 className="w-full h-auto"
               />

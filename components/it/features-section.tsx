@@ -3,24 +3,24 @@ import { Flower2 } from "lucide-react"
 export function FeaturesSection() {
   const features = [
     {
-      title: "Fioriture Spettacolari",
+      title: "Pronti a Fiorire per la Primavera",
       description:
-        "Ogni fiore sboccia con molteplici strati di petali ondulati, creando un effetto voluminoso e scenografico unico nel suo genere.",
+        "Pianta ora e goditi i primi fiori in poche settimane — perfettamente in tempo per la nuova stagione.",
     },
     {
-      title: "Fioritura Prolungata",
+      title: "Colore Che Dura Tutta la Stagione",
       description:
-        "Un'esplosione di colori che ti accompagna senza sosta dall'inizio dell'estate fino ai primi freschi autunnali.",
+        "Dai primi giorni caldi fino all'inizio dell'autunno, il tuo ibisco continuerà a fiorire senza sosta.",
     },
     {
-      title: "Ideale per Ogni Spazio",
+      title: "Cresce Ovunque",
       description:
-        "In vaso sul terrazzo, in aiuola o lungo i vialetti: queste piante donano splendore ovunque decidano di mettere radici.",
+        "Vasi, aiuole, balconi o vialetti — queste piante si adattano a qualsiasi spazio tu abbia.",
     },
     {
-      title: "Un Richiamo per la Natura",
+      title: "Dà Vita al Tuo Giardino",
       description:
-        "Queste meraviglie tropicali attirano farfalle e impollinatori, portando vita, movimento e allegria nel tuo angolo verde.",
+        "I petali vibranti attirano farfalle e impollinatori, trasformando il tuo spazio esterno in uno spettacolo vivente.",
     },
   ]
 
@@ -40,12 +40,11 @@ export function FeaturesSection() {
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-balance">
-            Trasforma il tuo Giardino in un Paradiso Tropicale: Rari Ibischi Doppi, Pronti a Fiorire
+            Il Giardino Primaverile Perfetto Inizia Con Quello Che Pianti Oggi.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto text-pretty">
-            Dona un tocco esotico e lussureggiante ai tuoi spazi con i nostri{" "}
-            <span className="font-semibold text-foreground">Ibischi Doppi</span>. Famosi per i loro fiori ricchi,
-            strutturati e dai colori vibranti, regalano uno spettacolo naturale che lascia senza fiato.
+            Mentre gli altri aspettano la primavera, i giardinieri furbi stanno già piantando. Metti il tuo Kit di{" "}
+            <span className="font-semibold text-foreground">Ibisco Doppio</span> nel terreno ora e guardali esplodere in fioriture vibranti e stratificate proprio quando arrivano le giornate calde — la finestra perfetta per iniziare si sta chiudendo.
           </p>
         </div>
 

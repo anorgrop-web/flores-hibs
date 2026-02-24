@@ -25,6 +25,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Script from "next/script"
 import { cn } from "@/lib/utils"
+import { trackHybridEvent } from "@/components/hybrid-tracker"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "")
 
@@ -308,23 +309,23 @@ function CheckoutForm() {
   const hasCompleteAddress = address.trim().length > 0 && city.trim().length > 0 && postcode.trim().length > 0
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.fbq && items.length > 0) {
-      window.fbq("track", "InitiateCheckout", {
-        value: total,
-        currency: currency,
-        content_ids: items.map((item) => item.id),
-        contents: items.map((item) => ({
-          id: item.id,
-          quantity: item.quantity,
-          item_price: item.price,
-        })),
-        num_items: items.reduce((sum, item) => sum + item.quantity, 0),
-      })
-      console.log("[v0] Facebook Pixel InitiateCheckout event fired", {
-        value: total,
-        currency: currency,
-        num_items: items.reduce((sum, item) => sum + item.quantity, 0),
-      })
+    if (items.length > 0) {
+      trackHybridEvent(
+        "InitiateCheckout",
+        {
+          value: total,
+          currency: currency,
+          locale: "it",
+          content_ids: items.map((item) => item.id),
+          contents: items.map((item) => ({
+            id: item.id,
+            quantity: item.quantity,
+            item_price: item.price,
+          })),
+          num_items: items.reduce((sum, item) => sum + item.quantity, 0),
+        },
+        { email, firstName, lastName }
+      )
     }
   }, [])
 
@@ -355,6 +356,7 @@ function CheckoutForm() {
       {items.length > 0 && (
         <div className="bg-black text-white text-center py-3 rounded-lg mb-6">
           <p className="text-sm font-medium">Carrello riservato per {formatTime(timeLeft)}</p>
+          <p className="text-xs text-gray-300 mt-1">Ordina ora e il tuo ibisco fiorirà già dai primi giorni di primavera.</p>
         </div>
       )}
 
@@ -545,7 +547,7 @@ function CheckoutForm() {
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
             <Link href="/it">
               <img
-                src="/images/design-mode/logoversiagardemsemfundo%201.png"
+                src="https://mk6n6kinhajxg1fp.public.blob.vercel-storage.com/Versia/Group%201087.png"
                 alt="Versia Garden"
                 className="h-12 w-auto"
               />
@@ -821,7 +823,7 @@ function CheckoutForm() {
               <div className="mb-6">
                 <h2 className="text-xl font-semibold mb-2">Pagamento Sicuro</h2>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Tutte le transazioni sono sicure e crittografate. Il tuo ordine include resi gratuiti e accesso 24/7 al nostro pluripremiato servizio clienti
+                  Tutte le transazioni sono sicure e crittografate. Il tuo ordine è protetto dalla nostra garanzia di soddisfazione di 30 giorni.
                 </p>
 
                 <div className="border border-border rounded-lg overflow-hidden">
