@@ -318,6 +318,8 @@ function CheckoutForm() {
   const subtotal = getSubtotal()
   const shippingCost = postcode ? (selectedShipping === "standard" ? 0 : 16.95) : 0
   const total = subtotal + shippingCost
+
+
   const hasCompleteAddress = address.trim().length > 0 && city.trim().length > 0 && state.trim().length > 0 && postcode.trim().length > 0
 
   useEffect(() => {
@@ -364,6 +366,18 @@ function CheckoutForm() {
 
   const OrderSummaryContent = () => (
     <>
+      {/* Empty Cart State */}
+      {items.length === 0 && (
+        <div className="text-center py-8">
+          <ShoppingBag className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+          <p className="text-lg font-semibold mb-2">Your cart is empty</p>
+          <p className="text-sm text-muted-foreground mb-4">Add some items to get started</p>
+          <Link href="/us" className="text-sm font-medium underline text-[#2d5f4f]">
+            Back to shop
+          </Link>
+        </div>
+      )}
+
       {/* Cart Reserved Timer */}
       {items.length > 0 && (
         <div className="bg-black text-white text-center py-3 rounded-lg mb-6">

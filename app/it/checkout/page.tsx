@@ -352,6 +352,17 @@ function CheckoutForm() {
 
   const OrderSummaryContent = () => (
     <>
+      {items.length === 0 && (
+        <div className="text-center py-8">
+          <ShoppingBag className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+          <p className="text-lg font-semibold mb-2">Il tuo carrello è vuoto</p>
+          <p className="text-sm text-muted-foreground mb-4">Aggiungi alcuni articoli per iniziare</p>
+          <Link href="/it" className="text-sm font-medium underline text-[#2d5f4f]">
+            Torna al negozio
+          </Link>
+        </div>
+      )}
+
       {/* Cart Reserved Timer */}
       {items.length > 0 && (
         <div className="bg-black text-white text-center py-3 rounded-lg mb-6">
