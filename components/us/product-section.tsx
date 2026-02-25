@@ -86,11 +86,11 @@ export function ProductSection() {
   const { addItem } = useCart()
 
   const kits = [
-    { id: "20-seeds", label: "Special Offer - 4-Color Hibiscus Plant Kit (Yellow, Purple, Red & Pink)", price: 29.90, originalPrice: 59.80 },
-    { id: "75-seeds", label: "Red Hibiscus - Pack of 4", price: 34.90, originalPrice: 69.80 },
-    { id: "50-seeds", label: "Yellow Hibiscus - Pack of 4", price: 34.90, originalPrice: 69.80 },
-    { id: "silver-kit", label: "Pink Hibiscus - Pack of 4", price: 34.90, originalPrice: 69.80 },
-    { id: "gold-kit", label: "Purple Hibiscus - Pack of 4", price: 34.90, originalPrice: 69.80 },
+    { id: "20-seeds", label: "Special Offer - 4-Color Hibiscus Plant Kit (Yellow, Purple, Red & Pink)", price: 19.90, originalPrice: 39.80 },
+    { id: "75-seeds", label: "Red Hibiscus - Pack of 4", price: 24.90, originalPrice: 49.80 },
+    { id: "50-seeds", label: "Yellow Hibiscus - Pack of 4", price: 24.90, originalPrice: 49.80 },
+    { id: "silver-kit", label: "Pink Hibiscus - Pack of 4", price: 24.90, originalPrice: 49.80 },
+    { id: "gold-kit", label: "Purple Hibiscus - Pack of 4", price: 24.90, originalPrice: 49.80 },
   ]
 
   const getCurrentPrice = () => {
@@ -100,7 +100,7 @@ export function ProductSection() {
 
   const getOriginalPrice = () => {
     const kit = kits.find((k) => k.id === selectedKit)
-    return kit ? kit.originalPrice : 59.80
+    return kit ? kit.originalPrice : 39.80
   }
 
   const getDiscountPercentage = () => {
