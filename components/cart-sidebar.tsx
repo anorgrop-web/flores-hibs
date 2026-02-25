@@ -15,6 +15,25 @@ export function CartSidebar() {
   const router = useRouter()
   const pathname = usePathname()
   const isItalian = pathname?.startsWith('/it')
+  const isSpanish = pathname?.startsWith('/es')
+  const isFrench = pathname?.startsWith('/fr')
+  const isUS = pathname?.startsWith('/us')
+
+  const getLocalePrefix = () => {
+    if (isItalian) return '/it'
+    if (isSpanish) return '/es'
+    if (isFrench) return '/fr'
+    if (isUS) return '/us'
+    return ''
+  }
+
+  const getCurrencySymbol = () => {
+    if (isUS) return '$'
+    if (isItalian || isSpanish || isFrench) return '€'
+    return '£'
+  }
+
+  const currencySymbol = getCurrencySymbol()
 
   // Countdown timer
   useEffect(() => {
@@ -48,7 +67,7 @@ export function CartSidebar() {
 
   const handleCheckout = () => {
     closeCart()
-    router.push(isItalian ? "/it/checkout" : "/checkout")
+    router.push(`${getLocalePrefix()}/checkout`)
   }
 
   return (
@@ -72,7 +91,7 @@ export function CartSidebar() {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b">
           <h2 className="text-xl font-bold">
-            {isItalian ? `Carrello • ${getTotalItems()} ${getTotalItems() === 1 ? "articolo" : "articoli"}` : `Cart • ${getTotalItems()} ${getTotalItems() === 1 ? "item" : "items"}`}
+            {isItalian ? `Carrello • ${getTotalItems()} ${getTotalItems() === 1 ? "articolo" : "articoli"}` : isSpanish ? `Carrito • ${getTotalItems()} ${getTotalItems() === 1 ? "artículo" : "artículos"}` : isFrench ? `Panier • ${getTotalItems()} ${getTotalItems() === 1 ? "article" : "articles"}` : `Cart • ${getTotalItems()} ${getTotalItems() === 1 ? "item" : "items"}`}
           </h2>
           <button
             onClick={closeCart}
@@ -86,7 +105,7 @@ export function CartSidebar() {
         {/* Timer Bar */}
         {items.length > 0 && (
           <div className="bg-black text-white text-center py-3 text-sm font-semibold">
-            {isItalian ? `Carrello riservato per ${formatTime(timeLeft)}` : `Cart reserved for ${formatTime(timeLeft)}`}
+            {isItalian ? `Carrello riservato per ${formatTime(timeLeft)}` : isSpanish ? `Carrito reservado por ${formatTime(timeLeft)}` : isFrench ? `Panier réservé pour ${formatTime(timeLeft)}` : `Cart reserved for ${formatTime(timeLeft)}`}
           </div>
         )}
 
@@ -94,8 +113,8 @@ export function CartSidebar() {
         <div className="flex-1 overflow-y-auto p-4">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
-              <p className="text-gray-500 text-lg mb-2">{isItalian ? "Il tuo carrello è vuoto" : "Your cart is empty"}</p>
-              <p className="text-gray-400 text-sm">{isItalian ? "Aggiungi alcuni articoli per iniziare" : "Add some items to get started"}</p>
+              <p className="text-gray-500 text-lg mb-2">{isItalian ? "Il tuo carrello è vuoto" : isSpanish ? "Tu carrito está vacío" : isFrench ? "Votre panier est vide" : "Your cart is empty"}</p>
+              <p className="text-gray-400 text-sm">{isItalian ? "Aggiungi alcuni articoli per iniziare" : isSpanish ? "Añade algunos artículos para empezar" : isFrench ? "Ajoutez des articles pour commencer" : "Add some items to get started"}</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -150,16 +169,20 @@ export function CartSidebar() {
                       <div className="text-right">
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-gray-500 line-through">
-                            {isItalian ? `€${(item.originalPrice * item.quantity).toFixed(2)}` : `£${(item.originalPrice * item.quantity).toFixed(2)}`}
+                            {currencySymbol}{(item.originalPrice * item.quantity).toFixed(2)}
                           </span>
                           <span className="text-sm font-bold">
-                            {isItalian ? `€${(item.price * item.quantity).toFixed(2)}` : `£${(item.price * item.quantity).toFixed(2)}`}
+                            {currencySymbol}{(item.price * item.quantity).toFixed(2)}
                           </span>
                         </div>
                         <p className="text-xs text-success-green font-medium">
                           {isItalian 
-                            ? `(Risparmi €${((item.originalPrice - item.price) * item.quantity).toFixed(2)})`
-                            : `(You save £${((item.originalPrice - item.price) * item.quantity).toFixed(2)})`
+                            ? `(Risparmi ${currencySymbol}${((item.originalPrice - item.price) * item.quantity).toFixed(2)})`
+                            : isSpanish
+                            ? `(Ahorras ${currencySymbol}${((item.originalPrice - item.price) * item.quantity).toFixed(2)})`
+                            : isFrench
+                            ? `(Économie ${currencySymbol}${((item.originalPrice - item.price) * item.quantity).toFixed(2)})`
+                            : `(You save ${currencySymbol}${((item.originalPrice - item.price) * item.quantity).toFixed(2)})`
                           }
                         </p>
                       </div>
@@ -176,17 +199,17 @@ export function CartSidebar() {
           <div className="border-t p-4 space-y-3">
             {/* Savings */}
             <div className="flex items-center justify-between text-sm">
-              <span className="font-semibold">{isItalian ? "Risparmi" : "Savings"}</span>
+              <span className="font-semibold">{isItalian ? "Risparmi" : isSpanish ? "Ahorros" : isFrench ? "Économies" : "Savings"}</span>
               <span className="text-success-green font-bold">
-                {isItalian ? `-€${getTotalSavings().toFixed(2)}` : `-£${getTotalSavings().toFixed(2)}`}
+                -{currencySymbol}{getTotalSavings().toFixed(2)}
               </span>
             </div>
 
             {/* Subtotal */}
             <div className="flex items-center justify-between text-lg">
-              <span className="font-bold">{isItalian ? "Subtotale" : "Subtotal"}</span>
+              <span className="font-bold">{isItalian ? "Subtotale" : isSpanish ? "Subtotal" : isFrench ? "Sous-total" : "Subtotal"}</span>
               <span className="font-bold">
-                {isItalian ? `€${getSubtotal().toFixed(2)}` : `£${getSubtotal().toFixed(2)}`}
+                {currencySymbol}{getSubtotal().toFixed(2)}
               </span>
             </div>
 
@@ -196,7 +219,7 @@ export function CartSidebar() {
               className="w-full h-12 text-base font-bold rounded-md"
               style={{ backgroundColor: "#2d5f4f", color: "white" }}
             >
-              {isItalian ? "Vai al pagamento" : "Check out"}
+              {isItalian ? "Vai al pagamento" : isSpanish ? "Ir al pago" : isFrench ? "Passer à la caisse" : "Check out"}
             </Button>
 
             {/* Payment Icons */}
