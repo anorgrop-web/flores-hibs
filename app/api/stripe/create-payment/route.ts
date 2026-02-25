@@ -169,7 +169,7 @@ export async function POST(request: NextRequest) {
     try {
       console.log("[v0] Sending order confirmation email to:", customerData.email)
       await sendOrderConfirmationEmail({
-        locale: (locale === "it" ? "it" : locale === "es" ? "es" : "en") as "en" | "it" | "es",
+        locale: (locale === "it" ? "it" : locale === "es" ? "es" : locale === "fr" ? "fr" : "en") as "en" | "it" | "es" | "fr",
         customerName: `${customerData.firstName} ${customerData.lastName}`,
         customerEmail: customerData.email,
         items: [
@@ -206,7 +206,7 @@ export async function POST(request: NextRequest) {
       console.error("[v0] Failed to send order confirmation email:", emailError)
     }
 
-    const upsellPath = locale === "it" ? "/it/upsell1" : locale === "es" ? "/es/upsell1" : "/upsell1"
+    const upsellPath = locale === "it" ? "/it/upsell1" : locale === "es" ? "/es/upsell1" : locale === "fr" ? "/fr/upsell1" : "/upsell1"
     const redirectUrl = `${appUrl}${upsellPath}?email=${encodeURIComponent(customerData.email)}&customer=${customer.id}`
     console.log("[v0] Success! Redirecting to:", redirectUrl)
 
@@ -217,36 +217,42 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error("[v0] Stripe payment error:", error)
 
-    const errorMap: Record<string, { en: string; it: string; es: string }> = {
+    const errorMap: Record<string, { en: string; it: string; es: string; fr: string }> = {
       card_declined: {
         en: "Your card was declined.",
         it: "La tua carta è stata rifiutata.",
         es: "Tu tarjeta ha sido rechazada.",
+        fr: "Votre carte a été refusée.",
       },
       insufficient_funds: {
         en: "Insufficient funds.",
         it: "Fondi insufficienti.",
         es: "Fondos insuficientes.",
+        fr: "Fonds insuffisants.",
       },
       expired_card: {
         en: "Your card has expired.",
         it: "La tua carta è scaduta.",
         es: "Tu tarjeta ha caducado.",
+        fr: "Votre carte a expiré.",
       },
       incorrect_cvc: {
         en: "Incorrect CVC.",
         it: "CVC non corretto.",
         es: "CVC incorrecto.",
+        fr: "CVC incorrect.",
       },
       processing_error: {
         en: "An error occurred while processing your card.",
         it: "Si è verificato un errore durante l'elaborazione della carta.",
         es: "Se ha producido un error al procesar tu tarjeta.",
+        fr: "Une erreur s'est produite lors du traitement de votre carte.",
       },
       incorrect_number: {
         en: "The card number is incorrect.",
         it: "Il numero della carta non è corretto.",
         es: "El número de la tarjeta es incorrecto.",
+        fr: "Le numéro de carte est incorrect.",
       },
     }
 
@@ -254,9 +260,10 @@ export async function POST(request: NextRequest) {
       en: "An error occurred while processing your payment.",
       it: "Si è verificato un errore durante l'elaborazione del pagamento.",
       es: "Se ha producido un error al procesar tu pago.",
+      fr: "Une erreur s'est produite lors du traitement de votre paiement.",
     }
 
-    const currentLocale = (locale === "it" ? "it" : locale === "es" ? "es" : "en") as "it" | "en" | "es"
+    const currentLocale = (locale === "it" ? "it" : locale === "es" ? "es" : locale === "fr" ? "fr" : "en") as "it" | "en" | "es" | "fr"
     let errorMessage = defaultError[currentLocale]
 
     if (error?.code && errorMap[error.code]) {
