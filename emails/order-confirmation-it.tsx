@@ -39,7 +39,8 @@ interface OrderConfirmationItProps {
 
 const formatCurrency = (amountCents: number, currency: string) => {
   const amount = amountCents / 100
-  const symbol = currency.toUpperCase() === "GBP" ? "\u00A3" : "\u20AC"
+  const upper = currency.toUpperCase()
+  const symbol = upper === "GBP" ? "\u00A3" : upper === "USD" ? "$" : "\u20AC"
   return `${symbol}${amount.toFixed(2)}`
 }
 
