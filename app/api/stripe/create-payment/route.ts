@@ -15,6 +15,11 @@ const PRICE_IDS = {
     subscription_app: "price_1T45w2CNWzvB3NegNbXqI9LI", // App (29 days trial)
     subscription_digital: "price_1SUdkyCNWzvB3NegKC29J6Kx", // Digital Course (1 day trial)
   },
+  USD: {
+    oneTime: "price_1SDSeHCNWzvB3NegK5C4yyUn", // TODO: Replace with actual USD price IDs
+    subscription_app: "price_1T48FlCNWzvB3Neg7Kc6RItq", // TODO: Replace with actual USD price IDs
+    subscription_digital: "price_1SUX2cCNWzvB3Neg3Qj7xiJB", // TODO: Replace with actual USD price IDs
+  },
 }
 // --- END PRICE CONFIGURATION AREA ---
 
@@ -206,7 +211,7 @@ export async function POST(request: NextRequest) {
       console.error("[v0] Failed to send order confirmation email:", emailError)
     }
 
-    const upsellPath = locale === "it" ? "/it/upsell1" : locale === "es" ? "/es/upsell1" : locale === "fr" ? "/fr/upsell1" : "/upsell1"
+    const upsellPath = locale === "it" ? "/it/upsell1" : locale === "es" ? "/es/upsell1" : locale === "fr" ? "/fr/upsell1" : locale === "us" ? "/us/upsell1" : "/upsell1"
     const redirectUrl = `${appUrl}${upsellPath}?email=${encodeURIComponent(customerData.email)}&customer=${customer.id}`
     console.log("[v0] Success! Redirecting to:", redirectUrl)
 
