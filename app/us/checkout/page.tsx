@@ -61,6 +61,7 @@ function CheckoutForm() {
 
   const [address, setAddress] = useState("")
   const [city, setCity] = useState("")
+  const [state, setState] = useState("")
   const [suggestions, setSuggestions] = useState<any[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [isGoogleMapsLoaded, setIsGoogleMapsLoaded] = useState(false)
@@ -177,6 +178,7 @@ function CheckoutForm() {
           lastName,
           address,
           city,
+          state,
           postcode,
           country: selectedCountry,
         },
@@ -263,6 +265,7 @@ function CheckoutForm() {
             let streetNumber = ""
             let route = ""
             let locality = ""
+            let adminArea = ""
             let postalCode = ""
 
             place.address_components.forEach((component: any) => {
@@ -274,8 +277,14 @@ function CheckoutForm() {
               if (types.includes("route")) {
                 route = component.long_name
               }
-              if (types.includes("postal_town") || types.includes("locality")) {
+              if (types.includes("locality")) {
                 locality = component.long_name
+              }
+              if (types.includes("postal_town") && !locality) {
+                locality = component.long_name
+              }
+              if (types.includes("administrative_area_level_1")) {
+                adminArea = component.short_name
               }
               if (types.includes("postal_code")) {
                 postalCode = component.long_name
@@ -287,6 +296,9 @@ function CheckoutForm() {
 
             if (locality) {
               setCity(locality)
+            }
+            if (adminArea) {
+              setState(adminArea)
             }
             if (postalCode) {
               setPostcode(postalCode)
@@ -306,7 +318,7 @@ function CheckoutForm() {
   const subtotal = getSubtotal()
   const shippingCost = postcode ? (selectedShipping === "standard" ? 0 : 16.95) : 0
   const total = subtotal + shippingCost
-  const hasCompleteAddress = address.trim().length > 0 && city.trim().length > 0 && postcode.trim().length > 0
+  const hasCompleteAddress = address.trim().length > 0 && city.trim().length > 0 && state.trim().length > 0 && postcode.trim().length > 0
 
   useEffect(() => {
     if (items.length > 0) {
@@ -488,6 +500,7 @@ function CheckoutForm() {
               lastName: ev.payerName?.split(" ").slice(1).join(" ") || "",
               address,
               city,
+              state,
               postcode,
               country: selectedCountry,
             },
@@ -715,13 +728,23 @@ function CheckoutForm() {
                     <Input type="text" placeholder="Apartment, suite, etc. (optional)" className="h-12" />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-3 gap-4">
                     <div>
                       <Input
                         type="text"
                         placeholder="City"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
+                        className="h-12"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        type="text"
+                        placeholder="State"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
                         className="h-12"
                         required
                       />

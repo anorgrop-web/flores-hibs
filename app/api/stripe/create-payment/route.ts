@@ -16,9 +16,9 @@ const PRICE_IDS = {
     subscription_digital: "price_1SUdkyCNWzvB3NegKC29J6Kx", // Digital Course (1 day trial)
   },
   USD: {
-    oneTime: "price_1SDSeHCNWzvB3NegK5C4yyUn", // TODO: Replace with actual USD price IDs
-    subscription_app: "price_1T48FlCNWzvB3Neg7Kc6RItq", // TODO: Replace with actual USD price IDs
-    subscription_digital: "price_1SUX2cCNWzvB3Neg3Qj7xiJB", // TODO: Replace with actual USD price IDs
+    oneTime: "price_USD_ONE_TIME_PLACEHOLDER",
+    subscription_app: "price_1T4lsvCNWzvB3Negb5lRcio0", // App (29 days trial)
+    subscription_digital: "price_1T4lrKCNWzvB3NeguJtQyRvu", // Digital Course (1 day trial)
   },
 }
 // --- END PRICE CONFIGURATION AREA ---

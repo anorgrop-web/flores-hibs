@@ -48,7 +48,7 @@ export default function Upsell1Page() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customerId: customer,
-          priceId: "price_USD_DIGITAL_SUB_PLACEHOLDER",
+          priceId: "price_1T4lrKCNWzvB3NeguJtQyRvu",
         }),
       })
 
