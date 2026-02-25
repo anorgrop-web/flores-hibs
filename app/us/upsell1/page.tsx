@@ -24,7 +24,7 @@ export default function Upsell1Page() {
   useEffect(() => {
     if (typeof window !== "undefined" && window.fbq) {
       window.fbq("track", "Purchase", {
-        value: 29.90,
+        value: 19.90,
         currency: "USD",
         content_name: "Master Gardening Course",
         content_type: "product",
