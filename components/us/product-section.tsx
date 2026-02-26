@@ -249,24 +249,6 @@ export function ProductSection() {
             <div className="relative aspect-square w-full rounded-lg border border-gray-200 group">
               <div className="overflow-hidden h-full rounded-lg" ref={emblaRef}>
                 <div className="flex h-full touch-pan-y">
-                  {/* YouTube Video as first slide */}
-                  <div className="flex-[0_0_100%] min-w-0 h-full relative">
-                    <div className="absolute inset-0 overflow-hidden rounded-lg">
-                      <div className="relative w-full h-full">
-                        <iframe
-                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78%] h-[177.78%] min-w-full min-h-full"
-                          src="https://www.youtube.com/embed/EbRDLkSlS0M?autoplay=1&mute=1&loop=1&playlist=EbRDLkSlS0M&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&playsinline=1&enablejsapi=1"
-                          title="Versia Garden Product Video"
-                          frameBorder="0"
-                          allow="autoplay; encrypted-media"
-                          allowFullScreen={false}
-                          loading="eager"
-                          style={{ pointerEvents: 'none' }}
-                        />
-                      </div>
-                      <div className="absolute bottom-0 right-0 w-36 h-12 bg-white z-10" style={{ pointerEvents: 'none' }} />
-                    </div>
-                  </div>
                   {PRODUCT_IMAGES.map((image, index) => (
                     <div key={index} className="flex-[0_0_100%] min-w-0 h-full relative">
                       <Image src={image || "/placeholder.svg"} alt={`Product image ${index + 1}`} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" priority={index === 0} />
@@ -277,23 +259,14 @@ export function ProductSection() {
               <button onClick={prevSlide} className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" aria-label="Previous image"><ChevronLeft className="w-6 h-6 text-gray-800" /></button>
               <button onClick={nextSlide} className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" aria-label="Next image"><ChevronRight className="w-6 h-6 text-gray-800" /></button>
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                <button onClick={() => goToSlide(0)} className={cn("w-2 h-2 rounded-full transition-all duration-300", currentSlide === 0 ? "bg-white w-6" : "bg-white/50 hover:bg-white/75")} aria-label="Go to video" />
                 {PRODUCT_IMAGES.map((_, index) => (
-                  <button key={index} onClick={() => goToSlide(index + 1)} className={cn("w-2 h-2 rounded-full transition-all duration-300", currentSlide === index + 1 ? "bg-white w-6" : "bg-white/50 hover:bg-white/75")} aria-label={`Go to slide ${index + 2}`} />
+                  <button key={index} onClick={() => goToSlide(index)} className={cn("w-2 h-2 rounded-full transition-all duration-300", currentSlide === index ? "bg-white w-6" : "bg-white/50 hover:bg-white/75")} aria-label={`Go to slide ${index + 1}`} />
                 ))}
               </div>
             </div>
             <div className="hidden lg:flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-              <button onClick={() => goToSlide(0)} className={cn("flex-shrink-0 w-20 h-20 rounded-md border-2 overflow-hidden transition-all relative bg-black", currentSlide === 0 ? "border-black" : "border-gray-200 hover:border-gray-300")}>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-6 h-6 bg-white/90 rounded-full flex items-center justify-center">
-                    <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-black border-b-[5px] border-b-transparent ml-0.5" />
-                  </div>
-                </div>
-                <Image src={PRODUCT_IMAGES[0] || "/placeholder.svg"} alt="Video thumbnail" width={80} height={80} sizes="80px" className="h-full w-full object-cover opacity-70" />
-              </button>
               {PRODUCT_IMAGES.map((image, index) => (
-                <button key={index} onClick={() => goToSlide(index + 1)} className={cn("flex-shrink-0 w-20 h-20 rounded-md border-2 overflow-hidden transition-all", currentSlide === index + 1 ? "border-black" : "border-gray-200 hover:border-gray-300")}>
+                <button key={index} onClick={() => goToSlide(index)} className={cn("flex-shrink-0 w-20 h-20 rounded-md border-2 overflow-hidden transition-all", currentSlide === index ? "border-black" : "border-gray-200 hover:border-gray-300")}>
                   <Image src={image || "/placeholder.svg"} alt={`Thumbnail ${index + 1}`} width={80} height={80} sizes="80px" className="h-full w-full object-cover" />
                 </button>
               ))}

@@ -25,13 +25,19 @@ export function FeaturesSection() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <div className="mb-8 md:mb-12 max-w-4xl mx-auto">
-            <video autoPlay loop muted playsInline className="w-full rounded-lg">
-              <source
-                src="https://dxy4adpuoflk7uxq.public.blob.vercel-storage.com/Versia%20Garden/Kit%20hibiscus/video%20hibiscus%20pg.mp4"
-                type="video/mp4"
+            <div className="relative w-full aspect-video overflow-hidden rounded-lg">
+              <iframe
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78%] h-[177.78%] min-w-full min-h-full"
+                src="https://www.youtube.com/embed/EbRDLkSlS0M?autoplay=1&mute=1&loop=1&playlist=EbRDLkSlS0M&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&playsinline=1&enablejsapi=1"
+                title="Versia Garden Product Video"
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen={false}
+                loading="eager"
+                style={{ pointerEvents: 'none' }}
               />
-              Your browser does not support the video tag.
-            </video>
+              <div className="absolute bottom-0 right-0 w-36 h-12 bg-background z-10" style={{ pointerEvents: 'none' }} />
+            </div>
           </div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-balance">
