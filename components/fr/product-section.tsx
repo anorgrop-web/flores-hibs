@@ -253,7 +253,7 @@ export function ProductSection() {
               <button
                 onClick={prevSlide}
                 className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
-                aria-label="Image pr\u00e9c\u00e9dente"
+                aria-label="Image précédente"
               >
                 <ChevronLeft className="w-6 h-6 text-gray-800" />
               </button>
@@ -274,7 +274,7 @@ export function ProductSection() {
                       "w-2 h-2 rounded-full transition-all duration-300",
                       currentSlide === index ? "bg-white w-6" : "bg-white/50 hover:bg-white/75",
                     )}
-                    aria-label={`Aller \u00e0 la diapositive ${index + 1}`}
+                    aria-label={`Aller à la diapositive ${index + 1}`}
                   />
                 ))}
               </div>
@@ -365,7 +365,7 @@ export function ProductSection() {
                 {"\u20ac"}{getOriginalPrice().toFixed(2).replace(".", ",")}
               </span>
               <span className="bg-warning-yellow text-white text-xs font-bold px-2 py-1 rounded">
-                {"🔥 \u00c9CONOMISEZ "}{getDiscountPercentage()}%
+                {"���� \u00c9CONOMISEZ "}{getDiscountPercentage()}%
               </span>
             </div>
 
