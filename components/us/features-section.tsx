@@ -36,7 +36,6 @@ export function FeaturesSection() {
                 loading="eager"
                 style={{ pointerEvents: 'none' }}
               />
-              <div className="absolute bottom-0 right-0 w-36 h-12 bg-background z-10" style={{ pointerEvents: 'none' }} />
             </div>
           </div>
 
